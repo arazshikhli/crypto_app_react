@@ -1,21 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import { ArrowDownOutlined, ArrowUpOutlined } from '@ant-design/icons';
 import { Tag, Spin, List, Typography, Layout, Card, Statistic } from 'antd';
-
-import { percentDifference, capitalize } from '../../utils'
+import { CryptoContext } from '../../context/crypto-context'
+import { capitalize } from '../../utils'
 
 
 const siderStyle = {
     padding: '1rem'
 };
 export const AppSider = () => {
-    const [loading, setLoading] = useState(false)
-    const [crypto, setCrypto] = useState([])
-    const [assets, setAssets] = useState([])
+    const { assets } = useContext(CryptoContext)
 
-    if (loading) {
-        return <Spin fullscreen size='large' />
-    }
     return (
         <Layout.Sider style={siderStyle}>
             {
@@ -42,7 +37,6 @@ export const AppSider = () => {
                         dataSource={[
                             { title: 'Total Profit', value: asset.totalProfit, withTag: true },
                             { title: 'Asset Amount', value: asset.amount, isPlain: true },
-                            // { title: 'Difference', value: asset.growPercent }
                         ]}
                         renderItem={(item) => (
                             <List.Item >

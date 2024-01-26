@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 import { FetchAssets, FetchCrypto } from '../components/Layout/Api';
 import { percentDifference, capitalize } from '../utils'
-const CryptoContext = createContext({
+export const CryptoContext = createContext({
     assets: [],
     crypto: [],
     loading: false
@@ -33,7 +33,7 @@ export const CryptoContextProvider = ({ children }) => {
         preload()
     }, [])
 
-    return <CryptoContext.Provider value={{}}>
+    return <CryptoContext.Provider value={{ assets, crypto }}>
         {children}
     </CryptoContext.Provider>
 }
